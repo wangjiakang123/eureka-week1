@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjk.demo.dao.ShoopDao">
+    <select id="list" resultType="com.wjk.demo.model.Shoop">
+        SELECT * FROM shooping
+        <where>
+            <if test="shoop.name!=null">
+                and name like '%${shoop.name}%'
+            </if>
+            <if test="shoop.upper_Status !=null">
+            and upper_Status=#{shoop.upper_Status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insetshoop">
+        insert into shooping set name=#{shoop.name},upper_Status=#{shoop.upper_Status},price =#{shoop.price},imge_url=#{shoop.imge_url},factory_date=#{shoop.factory_date}
+    </insert>
+</mapper>
